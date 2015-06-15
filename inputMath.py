@@ -54,7 +54,7 @@ def main():
 	chk("oral")
 	while chrAnswer != "n":
 		print("\nWhen you input your values, they must be in between quotes.")
-		Topic = input("\nTopic of question. eg: Number Theory, Number Bases, etc. (One word, please): ")
+		Topic = input("\nTopic of question. eg: Number Theory, Number Bases, etc. (One word, please): ").lower()
 		Problem = input("\nWhat is the question?: ")
 		Answer = input("\nAnswer to problem: ")
 		Team = input("\nTeam level.\nPossible options: Freshman, Sophmore, Junior, Senior, FreshSoph2Person, JunSen2Person, FreshSoph8Person, JunSen8Person, Calculator, Orals: ").lower()

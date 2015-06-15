@@ -49,7 +49,7 @@ def main():
 		Team = input("What team level are you looking for? \nOptions: Freshman, Sophmore, Junior, Senior, FreshSoph2Person, JunSen2Person\nFreshSoph8Person, JunSen8Person, Calculator, Orals: ").lower()
 		ByTopic = input("Would you like to search by topic? [y/n]: ")
 		if ByTopic == 'y':
-			Topic = input("All one word, and be warned that your topic may not yet be implemented: ")
+			Topic = input("All one word, and be warned that your topic may not yet be implemented.\nEg: 'Number Bases' turns into NumberBases: ").lower()
 		if Team == "freshman":
 			read("fresh")
 		if Team == "sophmore":
