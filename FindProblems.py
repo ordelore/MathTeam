@@ -23,9 +23,8 @@
 #  
 import pickle, os
 from random import randint
-NewProblem = 'y'
-ByTopic = 'n'
-def read(direct):
+def read(direct, ByTopic):
+	save_file = {}
 	if not(os.path.exists(direct)):
 		os.makedirs(direct)
 	intFileNumber = 0
@@ -33,42 +32,54 @@ def read(direct):
 	os.chdir(direct)
 	while os.path.isfile(str(intFileNumber) + ".txt"):
 		intFileNumber += 1
-	while save_file['Topic'] != Topic:
-		intFile = randint(0, intFileNumber)
-		save_file = open(str(intFile)+".txt")
-	print(save_file['Problem'])
+	intFile = 0
+	if ByTopic == 'y':
+		intNumber = 0
+		while save_file['Topic'] != Topic:
+			intFile = randint(0, intFileNumber - 1)
+			intNumber += 1
+			if intNumber >= intFileNumber:
+				print("No topics available")
+				return 0
+	else:
+		intFile = randint(0, intFileNumber - 1)
+	save_file = pickle.load(open(str(intFile)+".txt", 'rb'))
+	Answer = save_file['Problem']
+	print(Answer)
 	answer = ""
 	while answer != save_file['Answer']:
 		answer = input("Answer?: ")
 		if answer != save_file['Answer']:
-			print("Incorrect"
-	print("Correct!")
+			print("Incorrect")
+	print("Correct")
 	os.chdir(strCurPath)
 def main():
+	NewProblem = 'y'
+	ByTopic = 'n'
 	while NewProblem != 'n':
 		Team = input("What team level are you looking for? \nOptions: Freshman, Sophmore, Junior, Senior, FreshSoph2Person, JunSen2Person\nFreshSoph8Person, JunSen8Person, Calculator, Orals: ").lower()
 		ByTopic = input("Would you like to search by topic? [y/n]: ")
 		if ByTopic == 'y':
 			Topic = input("All one word, and be warned that your topic may not yet be implemented.\nEg: 'Number Bases' turns into NumberBases: ").lower()
 		if Team == "freshman":
-			read("fresh")
+			read("fresh", ByTopic)
 		if Team == "sophmore":
-			read("soph")
+			read("soph", ByTopic)
 		if Team == "junior":
-			read("junior")
+			read("junior", ByTopic)
 		if Team == "senior":
-			read("senior")
+			read("senior", ByTopic)
 		if Team == "orals":
-			read("oral")
+			read("oral", ByTopic)
 		if Team == "calculator":
-			read("calculate")
+			read("calculate", ByTopic)
 		if Team == "freshsoph2":
-			read("freshsoph2")
+			read("freshsoph2", ByTopic)
 		if Team == "freshsoph8":
-			read("freshsoph8")
+			read("freshsoph8", ByTopic)
 		if Team == "junsen2":
-			read("junsen2")
-		NewProblem = input("Would you like a new problem?: ")
+			read("junsen2", ByTopic)
+		NewProblem = input("Would you like a new problem? [y/n]: ")
 	return 0
 
 if __name__ == '__main__':

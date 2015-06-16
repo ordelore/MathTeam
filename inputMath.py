@@ -23,7 +23,6 @@
 #  
 import pickle, os
 save_file = {}
-save_data = save_file
 def chk(directory):
 	if not(os.path.exists(directory)):
 		os.makedirs(directory)
@@ -33,12 +32,13 @@ def write(direct):
 	os.chdir(direct)
 	while os.path.isfile(str(intFileNumber) + ".txt"):
 		intFileNumber += 1
-	save_file = open(str(intFileNumber)+".txt", "wb")
+	save_file = open(str(intFileNumber)+".txt", 'wb')
 	pickle.dump(save_data,save_file)
 	save_file.close()
 	os.chdir(strCurPath)
 def main():
 	from sys import platform as _platform
+	global save_data
 	intFileNumber = 0
 	chrAnswer = "y"
 	save_data = {}
